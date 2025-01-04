@@ -9,6 +9,10 @@ const newsData = require("./DemoNewsData");
 app.use(cors());
 app.use(express.json({limit:'50mb'}))
 
+app.get("/", async(req ,resp) => {
+    resp.send("welcome to my news section")
+});
+
 
 app.get("/getnews" , async(req , resp) => {
     const data = await User.find({});
@@ -115,3 +119,4 @@ const port = 3005;
 app.listen(port,() => {
     console.log(`Server is now running on PORT ${port}`)
 });
+
