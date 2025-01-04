@@ -5,6 +5,7 @@ require("./Db");
 const User = require("./user");
 const dailyNews = require("./dailyupdates");
 const newsData = require("./DemoNewsData");
+const iplData = require("./iplData");
 
 app.use(cors());
 app.use(express.json({limit:'50mb'}))
@@ -96,22 +97,42 @@ app.post("/getCategory" , async(req , resp) => {
 })
 
 
-app.get("/getDummyData", async(req , resp) => {
-    console.log("news data : ",newsData?.length);
-    if(newsData?.length > 1){
-        resp.status(200).send({
-            status:"success",
-            statuscode:200,
-            message:"Data Fetched successfully",
-            data:newsData
+app.get("/getDummyData/:q", async(req , resp) => {
+    console.log("news data : ",);
+    const category = req.params.q;
+
+    if(category == "ipl"){
+        resp.send({
+            "status":"success",
+            "statuscode":200,
+            "message":"Data fetched Successfully",
+            "data":iplData
+
         })
     }else{
         resp.status(200).send({
-            status:"success",
-            statuscode:200,
-            message:"No Record Found",
-        })
+                    status:"success",
+                    statuscode:200,
+                    message:"Data Fetched successfully",
+                    data:newsData
+                })
     }
+
+    
+    // if(newsData?.length > 1){
+    //     resp.status(200).send({
+    //         status:"success",
+    //         statuscode:200,
+    //         message:"Data Fetched successfully",
+    //         data:newsData
+    //     })
+    // }else{
+    //     resp.status(200).send({
+    //         status:"success",
+    //         statuscode:200,
+    //         message:"No Record Found",
+    //     })
+    // }
 })
 
 
