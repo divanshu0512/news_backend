@@ -139,16 +139,13 @@ app.get("/getDummyData/:q", async(req , resp) => {
 app.get("/getDummyData", async(req , resp) => {
 
     if(newsData?.length > 1){
-        if(category == "ipl"){
             resp.send({
                 "status":"success",
                 "statuscode":200,
                 "message":"Data fetched Successfully",
-                "data":iplData
+                "data":newsData
     
             })
-        }
-
     }else{
         resp.status(200).send({
                     status:"error",
